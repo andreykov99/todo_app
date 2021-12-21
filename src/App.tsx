@@ -3,6 +3,7 @@ import { useState } from "react";
 import NewTodo from "./newtodo";
 import ListTodo from "./listtodo";
 import "./App.css";
+import Container from "react-bootstrap/Container";
 
 function App() {
   const [state, setState] = useState<ITodo[]>([]);
@@ -18,10 +19,12 @@ function App() {
     setState((prev) => [...prev, newTodo]);
   };
   return (
-    <div className="container">
-      <NewTodo addNewToDo={addNewToDoHandler} />
+    <Container className="p-3">
+      <Container className="p-5 mb-4 bg-light rounded-3">
+        <NewTodo addNewToDo={addNewToDoHandler} />
+      </Container>
       <ListTodo list={state} />
-    </div>
+    </Container>
   );
 }
 

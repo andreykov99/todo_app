@@ -1,3 +1,4 @@
+import { ListGroup } from "react-bootstrap";
 import { ITodo } from "./types";
 
 interface IListTodoProps {
@@ -5,13 +6,13 @@ interface IListTodoProps {
 }
 const ListTodo = ({ list }: IListTodoProps) => {
   return (
-    <ul>
+    <ListGroup>
       {list.map((item: ITodo) => (
-        <li key={item.id}>
+        <ListGroup.Item key={item.id}>
           <span>{item.text}</span>
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 };
 
