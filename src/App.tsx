@@ -2,6 +2,7 @@ import { ITodo } from "./types";
 import { useState } from "react";
 import NewTodo from "./newtodo";
 import ListTodo from "./listtodo";
+import { Container } from "react-bootstrap";
 import "./App.css";
 
 function App() {
@@ -18,10 +19,12 @@ function App() {
     setState((prev) => [...prev, newTodo]);
   };
   return (
-    <div className="container">
-      <NewTodo addNewToDo={addNewToDoHandler} />
+    <Container className="p-3">
+      <Container className="p-5 mb-4 bg-light rounded-3">
+        <NewTodo addNewToDo={addNewToDoHandler} />
+      </Container>
       <ListTodo list={state} />
-    </div>
+    </Container>
   );
 }
 
