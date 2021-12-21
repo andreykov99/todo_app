@@ -1,24 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { getDiffieHellman } from "crypto";
+import React, { useState } from "react";
+import "./App.css";
+
+interface Todo {
+  id: number;
+  text: string;
+  isDone: boolean;
+}
+
+interface NewTodoProp {
+  addNewToDo: (todo: string) => void;
+}
+
+const NewTodo = (prop: NewTodoProp): JSX.Element => {
+  const [state, setState] = useState("");
+  const submitHandle = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    prop.addNewToDo(state);
+    setState("");
+  };
+  return (
+    <form action="#" onSubmit={submitHandle}>
+      <input
+        type="text"
+        name="newTodo"
+        id="newTodo"
+        placeholder="enter todo text here"
+        value={state}
+        onChange={(e) => setState(e.target.value)}
+      />
+      <button type="submit">Add ToDo</button>
+    </form>
+  );
+};
+
+interface ListTodoProps {
+  list: Array<Todo>;
+}
+const ListTodo = ({ list }: ListTodoProps) => {
+  return (
+    <ul>
+      {list.map((item: Todo) => (
+        <li key={item.id}>
+          <span>{item.text}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 function App() {
+  const [state, setState] = useState<Todo[]>([]);
+  const getId = () => {
+    return Date.now();
+  };
+  const addNewToDoHandler = (todo: string) => {
+    const newTodo: Todo = {
+      text: todo,
+      id: getId(),
+      isDone: false,
+    };
+    setState((prev) => [...prev, newTodo]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <NewTodo addNewToDo={addNewToDoHandler} />
+      <ListTodo list={state} />
     </div>
   );
 }
