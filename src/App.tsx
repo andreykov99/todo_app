@@ -1,60 +1,16 @@
-import React, { useState } from "react";
+import { ITodo } from "./types";
+import { useState } from "react";
+import NewTodo from "./newtodo";
+import ListTodo from "./listtodo";
 import "./App.css";
 
-interface Todo {
-  id: number;
-  text: string;
-  isDone: boolean;
-}
-
-interface NewTodoProp {
-  addNewToDo: (todo: string) => void;
-}
-
-const NewTodo = (prop: NewTodoProp): JSX.Element => {
-  const [state, setState] = useState("");
-  const submitHandle = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    prop.addNewToDo(state);
-    setState("");
-  };
-  return (
-    <form action="#" onSubmit={submitHandle}>
-      <input
-        type="text"
-        name="newTodo"
-        id="newTodo"
-        placeholder="enter todo text here"
-        value={state}
-        onChange={(e) => setState(e.target.value)}
-      />
-      <button type="submit">Add ToDo</button>
-    </form>
-  );
-};
-
-interface ListTodoProps {
-  list: Array<Todo>;
-}
-const ListTodo = ({ list }: ListTodoProps) => {
-  return (
-    <ul>
-      {list.map((item: Todo) => (
-        <li key={item.id}>
-          <span>{item.text}</span>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
 function App() {
-  const [state, setState] = useState<Todo[]>([]);
+  const [state, setState] = useState<ITodo[]>([]);
   const getId = () => {
     return Date.now();
   };
   const addNewToDoHandler = (todo: string) => {
-    const newTodo: Todo = {
+    const newTodo: ITodo = {
       text: todo,
       id: getId(),
       isDone: false,
