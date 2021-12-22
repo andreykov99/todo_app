@@ -1,7 +1,7 @@
 import { ITodo } from "./types";
 import { useState } from "react";
-import NewTodo from "./newtodo";
-import ListTodo from "./listtodo";
+import NewTodo from "./components/newtodo";
+import ListTodo from "./components/listtodo";
 import { Container } from "react-bootstrap";
 import "./App.css";
 
