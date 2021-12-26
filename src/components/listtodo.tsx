@@ -2,10 +2,10 @@ import { ListGroup } from "react-bootstrap";
 import Todo from "./todo";
 import { ITodo } from "../types";
 
-interface IListTodoProps {
+type ListTodoProps = {
   list: Array<ITodo>;
-}
-const ListTodo = ({ list }: IListTodoProps) => {
+};
+const ListTodo = ({ list }: ListTodoProps) => {
   return (
     <ListGroup>
       {list.map((item: ITodo) => (

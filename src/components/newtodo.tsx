@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-interface INewTodoProp {
+type NewTodoProp = {
   addNewToDo: (todo: string) => void;
-}
+};
 
-const NewTodo = ({ addNewToDo }: INewTodoProp): JSX.Element => {
+const NewTodo = ({ addNewToDo }: NewTodoProp): JSX.Element => {
   const [state, setState] = useState("");
   const submitHandle = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
