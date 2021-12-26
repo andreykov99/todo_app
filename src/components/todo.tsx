@@ -3,7 +3,7 @@ import { Button, ToggleButton, Stack } from "react-bootstrap";
 import trashImg from "./assets/trash.svg";
 import squareImg from "./assets/square.svg";
 import checkSquareImg from "./assets/check-square.svg";
-// TODO: text is not center vertical
+
 type TodoProps = {
   todo: ITodo;
 };
@@ -12,7 +12,7 @@ const Todo = ({ todo }: TodoProps) => (
     <ToggleButton className="mr3" value={todo.id} checked={todo.isDone}>
       <img src={todo.isDone ? checkSquareImg : squareImg} alt="delete" />
     </ToggleButton>
-    <p className="me-auto">{todo.text}</p>
+    <div className="me-auto">{todo.text}</div>
     <Button>
       <img src={trashImg} alt="delete" />
     </Button>

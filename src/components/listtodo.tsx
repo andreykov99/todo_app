@@ -7,9 +7,9 @@ type ListTodoProps = {
 };
 const ListTodo = ({ list }: ListTodoProps) => {
   return (
-    <ListGroup>
+    <ListGroup as="ul">
       {list.map((item: ITodo) => (
-        <ListGroup.Item key={item.id}>
+        <ListGroup.Item key={item.id} as="li">
           <Todo todo={item} />
         </ListGroup.Item>
       ))}
