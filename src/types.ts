@@ -1,5 +1,3 @@
 export interface ITodo {
-  id: number;
-  text: string;
-  isDone: boolean;
+  todo: { id: number; text: string; isDone: boolean };
 }
