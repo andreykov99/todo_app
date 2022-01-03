@@ -6,7 +6,7 @@ import checkSquareImg from "./assets/check-square.svg";
 
 const Todo = ({ todo: { id, isDone, text } }: ITodo) => (
   <Stack direction="horizontal" gap={3}>
-    <ToggleButton className="mr3" value={id} checked={isDone}>
+    <ToggleButton className="mr3" value={id ? id : "toggle"} checked={isDone}>
       <img src={isDone ? checkSquareImg : squareImg} alt="delete" />
     </ToggleButton>
     <div className="me-auto">{text}</div>

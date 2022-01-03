@@ -12,7 +12,7 @@ function App() {
   };
   const addNewToDoHandler = (todo: string) => {
     const newTodo: ITodo = {
-      todo: { text: todo, id: getId(), isDone: false },
+      todo: { text: todo, isDone: false },
     };
     setState((prev) => [...prev, newTodo]);
   };
