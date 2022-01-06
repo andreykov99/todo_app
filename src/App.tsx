@@ -1,19 +1,17 @@
 import { ITodo } from "./types";
 import { useState } from "react";
-import NewTodo from "./components/newtodo";
-import ListTodo from "./components/listtodo";
+import { NewTodo, ListTodo } from "./components";
+import { createTodo } from "./services/todo";
 import { Container } from "react-bootstrap";
 import "./App.css";
 
 function App() {
   const [state, setState] = useState<Array<ITodo> | []>([]);
-  const getId = () => {
-    return Date.now();
-  };
   const addNewToDoHandler = (todo: string) => {
     const newTodo: ITodo = {
       todo: { text: todo, isDone: false },
     };
+    createTodo(newTodo);
     setState((prev) => [...prev, newTodo]);
   };
   const getListTodo = () => [...state];

@@ -1,5 +1,5 @@
 import { ListGroup } from "react-bootstrap";
-import Todo from "./todo";
+import { Todo } from ".";
 import { ITodo } from "../types";
 
 type ListTodoProps = {
