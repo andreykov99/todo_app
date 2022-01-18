@@ -15,6 +15,10 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint"],
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
   "settings": {
     "import/resolver": {
       "node": {
