@@ -28,6 +28,7 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
+    "comma-dangle": ["error", "never"],
     "import/extensions": [
       "error",
       "ignorePackages",
