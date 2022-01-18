@@ -37,6 +37,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
+    "object-curly-newline": 0,
     "import/extensions": [
       "error",
       "ignorePackages",
