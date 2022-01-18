@@ -1,17 +1,17 @@
-import { ITodo } from "./types";
-import { useState } from "react";
-import { NewTodo, ListTodo } from "./components";
-import { createTodo } from "./services/todo";
-import { Container } from "react-bootstrap";
-import "./App.css";
+import { useState } from 'react';
+import { Container } from 'react-bootstrap';
+import { ITodo } from './types';
+import { NewTodo, ListTodo } from './components';
+// import { createTodo } from "./services/todo";
+import './App.css';
 
-function App() {
+const App = () => {
   const [state, setState] = useState<Array<ITodo> | []>([]);
   const addNewToDoHandler = (todo: string) => {
     const newTodo: ITodo = {
-      todo: { text: todo, isDone: false },
+      todo: { text: todo, isDone: false }
     };
-    createTodo(newTodo);
+    // createTodo(newTodo);
     setState((prev) => [...prev, newTodo]);
   };
   const getListTodo = () => [...state];
@@ -23,6 +23,6 @@ function App() {
       <ListTodo list={getListTodo()} />
     </Container>
   );
-}
+};
 
 export default App;
