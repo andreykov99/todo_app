@@ -1,10 +1,6 @@
 import { ListGroup } from 'react-bootstrap';
 import { Todo } from '.';
-import { ITodo } from '../types';
-
-type ListTodoProps = {
-  list: Array<ITodo>;
-};
+import { ITodo, ListTodoProps } from '../types';
 
 const ListTodo = ({ list }: ListTodoProps) => {
   if (!list.length) {
@@ -12,9 +8,9 @@ const ListTodo = ({ list }: ListTodoProps) => {
   }
   return (
     <ListGroup as="ul">
-      {list.map(({ todo: { id, isDone, text } }: ITodo) => (
+      {list.map(({ id, isDone, text }: ITodo) => (
         <ListGroup.Item key={id} as="li">
-          <Todo todo={{ id, isDone, text }} />
+          <Todo id={id} isDone={isDone} text={text} />
         </ListGroup.Item>
       ))}
     </ListGroup>

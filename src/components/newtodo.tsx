@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { NewTodoProp } from '../types';
 
-type NewTodoProp = {
-  // eslint-disable-next-line no-unused-vars
-  addNewToDo: (arg: string) => void;
-};
-
-const NewTodo = ({ addNewToDo }: NewTodoProp): JSX.Element => {
+const NewTodo = ({ addNewTodo }: NewTodoProp): JSX.Element => {
   const [state, setState] = useState('');
   const submitHandle = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (state !== '') {
-      addNewToDo(state);
+      addNewTodo(state);
       setState('');
     }
   };

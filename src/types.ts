@@ -1,3 +1,14 @@
+/* eslint-disable no-unused-vars */
 export interface ITodo {
-  todo: { id?: string; text: string; isDone: boolean };
+  id?: string;
+  text: string;
+  isDone: boolean;
+}
+
+export type NewTodoProp = {
+  addNewTodo: (arg: string) => void;
+};
+
+export interface ListTodoProps {
+  list: Array<ITodo>;
 }
