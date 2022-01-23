@@ -1,18 +1,18 @@
-import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { ITodo } from './types';
 import { NewTodo, ListTodo } from './components';
 // import { createTodo } from "./services/todo";
 import './App.css';
+import useLocalStorage from './hooks/uselocalstorage';
 
 const App = () => {
-  const [state, setState] = useState<Array<ITodo> | []>([]);
+  const [state, setState] = useLocalStorage('Todos', [] as ITodo[]);
   const addNewToDoHandler = (todo: string) => {
     const newTodo: ITodo = {
       todo: { text: todo, isDone: false }
     };
     // createTodo(newTodo);
-    setState((prev) => [...prev, newTodo]);
+    setState((prev: ITodo[]) => [...prev, newTodo]);
   };
   const getListTodo = () => [...state];
   return (
