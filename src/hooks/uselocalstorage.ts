@@ -1,23 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
-/**
- *
- * @param {String} key The key to set in localStorage for this value
- * @param {Object} defaultValue The value to use if it is not already in localStorage
- * @param {{serialize: Function, deserialize: Function}} options The serialize and deserialize functions to use (defaults to JSON.stringify and JSON.parse respectively)
- */
-
-function useLocalStorage(
+const useLocalStorage = (
   key: string,
-  defaultValue: string | void | {} = "",
+  defaultValue: string | void | {} | [] = '',
   { serialize = JSON.stringify, deserialize = JSON.parse } = {}
-) {
+) => {
   const [state, setState] = useState(() => {
     const valueInLocalStorage = window.localStorage.getItem(key);
     if (valueInLocalStorage) {
       return deserialize(valueInLocalStorage);
     }
-    return typeof defaultValue === "function" ? defaultValue() : defaultValue;
+    return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
   });
 
   const prevKeyRef = useRef(key);
@@ -32,6 +25,6 @@ function useLocalStorage(
   }, [key, state, serialize]);
 
   return [state, setState];
-}
+};
 
 export default useLocalStorage;
