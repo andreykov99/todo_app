@@ -4,7 +4,13 @@
     "jest": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "plugin:react/jsx-runtime"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -14,7 +20,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "globals": {
     "React": true,
     "JSX": true
@@ -27,13 +33,17 @@
     }
   },
   "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       1,
       {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": ["off"],
+    "@typescript-eslint/comma-dangle": ["error"],
     "react/function-component-definition": [
       "error",
       {
