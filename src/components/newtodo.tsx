@@ -4,12 +4,14 @@ import { useTodo } from '../context/todo-context';
 
 const NewTodo = () => {
   const [text, setText] = useState('');
-  const { state, actions } = useTodo();
-  console.log(state, actions);
+  const value = useTodo();
+  if (!value) throw new Error('context value is not set');
+  const { actions } = value;
+  const { addTodo } = actions;
   const submitHandle = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (text !== '') {
-      // dispatch({ type: NEW_TODO, todo: { text } });
+      addTodo(text);
       setText('');
     }
   };

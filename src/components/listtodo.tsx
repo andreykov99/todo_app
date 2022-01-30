@@ -1,11 +1,15 @@
 import { ListGroup } from 'react-bootstrap';
-import { Todo } from '.';
+import Todo from './todo';
 import { ITodo } from '../types';
+import { useTodo } from '../context/todo-context';
 
 const ListTodo = () => {
-  const list: ITodo[] = [];
+  const value = useTodo();
+  if (!value) throw new Error('context value is not set');
+  const { state } = value;
+  const list: ITodo[] = state.todos;
   if (!list.length) {
-    return <p>Sorry, the list is empty.</p>;
+    return <p>The list is empty.</p>;
   }
   return (
     <ListGroup as="ul">

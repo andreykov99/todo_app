@@ -14,6 +14,13 @@ export type TodoAction = {
   todo: ITodo;
 };
 
+export type ActionTypes = {
+  addTodo: (text: string) => void;
+  delTodo: (id: string) => void;
+};
+
+export type ContextType = { state: TodoState; actions: ActionTypes } | null;
+
 export type TodoProviderProps = {
   children: React.ReactNode;
 };

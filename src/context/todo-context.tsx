@@ -1,8 +1,14 @@
 import { createContext, useContext, useReducer } from 'react';
-import { ITodo, TodoAction, TodoProviderProps, TodoState } from '../types';
+import {
+  ITodo,
+  TodoAction,
+  TodoProviderProps,
+  TodoState,
+  ContextType,
+} from '../types';
 
 const initialState: TodoState = {
-  todos: []
+  todos: [],
 };
 
 const NEW_TODO = 'NEW_TODO';
@@ -18,31 +24,31 @@ const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
       const newTodo: ITodo = {
         id: generateId(),
         text: action.todo.text,
-        isDone: false
+        isDone: false,
       };
       return { ...state, todos: state.todos.concat(newTodo) };
     }
     case DEL_TODO: {
       const updatedTodos: ITodo[] = state.todos.filter(
-        (todo: ITodo) => todo.id !== action.todo.id
+        (todo: ITodo) => todo.id !== action.todo.id,
       );
       return {
         ...state,
-        todos: updatedTodos
+        todos: updatedTodos,
       };
     }
     case UPD_TODO: {
       const updTodo: ITodo = {
         id: action.todo.id,
         text: action.todo.text,
-        isDone: action.todo.isDone
+        isDone: action.todo.isDone,
       };
       const updatedTodos: ITodo[] = state.todos
         .filter((todo: ITodo) => todo.id !== action.todo.id)
         .concat(updTodo);
       return {
         ...state,
-        todos: updatedTodos
+        todos: updatedTodos,
       };
     }
     default:
@@ -50,12 +56,7 @@ const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
   }
 };
 
-// TODO: add actions Type
-type ActionTypes = {
-  addTodo: (text: string) => React.Dispatch<TodoAction>;
-  delTodo: (id: string) => React.Dispatch<TodoAction>;
-};
-const useValue = (): { state: TodoState; actions: ActionTypes } => {
+const useValue = (): ContextType => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const actions = {
     addTodo: (text: string) => {
@@ -63,19 +64,19 @@ const useValue = (): { state: TodoState; actions: ActionTypes } => {
     },
     delTodo: (id: string) => {
       dispatch({ type: DEL_TODO, todo: { id } });
-    }
+    },
   };
   return { state, actions };
 };
 
-const TodoContext = createContext<typeof useValue | null>(null);
+const TodoContext = createContext<ContextType>(null);
 TodoContext.displayName = 'TodoContext';
 
 const TodoProvider = ({ children }: TodoProviderProps) => (
   <TodoContext.Provider value={useValue()}>{children}</TodoContext.Provider>
 );
 
-const useTodo = () => {
+const useTodo = (): ContextType => {
   const context = useContext(TodoContext);
   if (context === undefined) {
     throw new Error('useTodo must be used within a TodoProvider');
