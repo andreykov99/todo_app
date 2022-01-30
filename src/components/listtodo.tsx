@@ -1,8 +1,9 @@
 import { ListGroup } from 'react-bootstrap';
 import { Todo } from '.';
-import { ITodo, ListTodoProps } from '../types';
+import { ITodo } from '../types';
 
-const ListTodo = ({ list }: ListTodoProps) => {
+const ListTodo = () => {
+  const list: ITodo[] = [];
   if (!list.length) {
     return <p>Sorry, the list is empty.</p>;
   }

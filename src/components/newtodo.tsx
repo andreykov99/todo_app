@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { NewTodoProp } from '../types';
+import { useTodo } from '../context/todo-context';
 
-const NewTodo = ({ addNewTodo }: NewTodoProp): JSX.Element => {
-  const [state, setState] = useState('');
+const NewTodo = () => {
+  const [text, setText] = useState('');
+  const { state, actions } = useTodo();
+  console.log(state, actions);
   const submitHandle = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (state !== '') {
-      addNewTodo(state);
-      setState('');
+    if (text !== '') {
+      // dispatch({ type: NEW_TODO, todo: { text } });
+      setText('');
     }
   };
   return (
@@ -21,8 +23,8 @@ const NewTodo = ({ addNewTodo }: NewTodoProp): JSX.Element => {
             name="newTodo"
             id="newTodo"
             placeholder="enter todo text here"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
         </Col>
         <Col>

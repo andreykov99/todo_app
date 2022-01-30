@@ -1,14 +1,21 @@
 /* eslint-disable no-unused-vars */
 export interface ITodo {
   id?: string;
-  text: string;
-  isDone: boolean;
+  text?: string;
+  isDone?: boolean;
 }
 
-export type NewTodoProp = {
-  addNewTodo: (arg: string) => void;
+export type TodoState = {
+  todos: ITodo[];
 };
 
-export interface ListTodoProps {
-  list: Array<ITodo>;
-}
+export type TodoAction = {
+  type: string;
+  todo: ITodo;
+};
+
+export type TodoProviderProps = {
+  children: React.ReactNode;
+};
+
+export type DispatchType = (args: TodoAction) => TodoAction;
