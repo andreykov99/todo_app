@@ -38,7 +38,8 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": ["off"],
+    "@typescript-eslint/comma-dangle": ["error"],
     "react/function-component-definition": [
       "error",
       {
