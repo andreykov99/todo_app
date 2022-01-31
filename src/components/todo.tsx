@@ -4,10 +4,17 @@ import trashImg from './assets/trash.svg';
 import squareImg from './assets/square.svg';
 import checkSquareImg from './assets/check-square.svg';
 
-const Todo = ({ id, isDone, text }: ITodo) => {
-  const deleteButtonHandle = (e: React.MouseEvent) => {
-    // eslint-disable-next-line no-console
-    console.log(e);
+type Props = {
+  todo: ITodo;
+  delTodo: (id: string) => void;
+};
+const Todo = ({ todo, delTodo }: Props) => {
+  const { id, text, isDone } = todo;
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const deleteButtonHandle = (id: string | undefined) => {
+    if (!id) return;
+    // todo add confirm to delete
+    delTodo(id);
   };
   return (
     <Stack direction="horizontal" gap={3}>
@@ -15,7 +22,7 @@ const Todo = ({ id, isDone, text }: ITodo) => {
         <img src={isDone ? checkSquareImg : squareImg} alt="delete" />
       </ToggleButton>
       <div className="me-auto">{text}</div>
-      <Button onClick={(e) => deleteButtonHandle(e)}>
+      <Button onClick={() => deleteButtonHandle(id)}>
         <img src={trashImg} alt="delete" />
       </Button>
     </Stack>
