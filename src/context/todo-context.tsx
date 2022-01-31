@@ -1,12 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  ITodo,
-  TodoAction,
-  TodoProviderProps,
-  TodoState,
-  ContextType,
-} from '../types';
+import { ITodo, TodoAction, TodoState, ContextType } from '../types';
 
 const initialState: TodoState = {
   todos: [],
@@ -70,7 +64,7 @@ const useValue = (): ContextType => {
 const TodoContext = createContext<ContextType>(null);
 TodoContext.displayName = 'TodoContext';
 
-const TodoProvider = ({ children }: TodoProviderProps) => (
+const TodoProvider = ({ children }: { children: React.ReactNode }) => (
   <TodoContext.Provider value={useValue()}>{children}</TodoContext.Provider>
 );
 

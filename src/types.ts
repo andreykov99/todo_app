@@ -21,8 +21,4 @@ export type ActionTypes = {
 
 export type ContextType = { state: TodoState; actions: ActionTypes } | null;
 
-export type TodoProviderProps = {
-  children: React.ReactNode;
-};
-
 export type DispatchType = (args: TodoAction) => TodoAction;

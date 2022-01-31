@@ -4,11 +4,13 @@ import trashImg from './assets/trash.svg';
 import squareImg from './assets/square.svg';
 import checkSquareImg from './assets/check-square.svg';
 
-type Props = {
+const Todo = ({
+  todo,
+  delTodo,
+}: {
   todo: ITodo;
   delTodo: (id: string) => void;
-};
-const Todo = ({ todo, delTodo }: Props) => {
+}) => {
   const { id, text, isDone } = todo;
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const deleteButtonHandle = (id: string | undefined) => {
