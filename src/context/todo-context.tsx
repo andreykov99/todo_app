@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {
   ITodo,
   TodoAction,
@@ -15,14 +16,11 @@ const NEW_TODO = 'NEW_TODO';
 const DEL_TODO = 'DEL_TODO';
 const UPD_TODO = 'UPD_TODO';
 
-// TODO: generateId will be generate unique id
-const generateId = () => 'newId';
-
 const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
   switch (action.type) {
     case NEW_TODO: {
       const newTodo: ITodo = {
-        id: generateId(),
+        id: uuidv4(),
         text: action.todo.text,
         isDone: false,
       };
