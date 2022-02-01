@@ -8,7 +8,7 @@ const ListTodo = () => {
   if (!value) throw new Error('context value is not set');
   const { state, actions } = value;
   const list: ITodo[] = state.todos;
-  const { delTodo } = actions;
+  const { delTodo, toggleTodo } = actions;
   if (!list.length) {
     return <p>The list is empty.</p>;
   }
@@ -18,7 +18,7 @@ const ListTodo = () => {
         const { id } = todo;
         return (
           <ListGroup.Item key={id} as="li">
-            <Todo todo={todo} delTodo={delTodo} />
+            <Todo todo={todo} delTodo={delTodo} toggleTodo={toggleTodo} />
           </ListGroup.Item>
         );
       })}

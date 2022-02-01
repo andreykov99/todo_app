@@ -17,6 +17,7 @@ export type TodoAction = {
 export type ActionTypes = {
   addTodo: (text: string) => void;
   delTodo: (id: string) => void;
+  toggleTodo: (id: string, isDone: boolean) => void;
 };
 
 export type ContextType = { state: TodoState; actions: ActionTypes } | null;

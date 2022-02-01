@@ -30,17 +30,18 @@ const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
       };
     }
     case UPD_TODO: {
-      const updTodo: ITodo = {
-        id: action.todo.id,
-        text: action.todo.text,
-        isDone: action.todo.isDone,
-      };
-      const updatedTodos: ITodo[] = state.todos
-        .filter((todo: ITodo) => todo.id !== action.todo.id)
-        .concat(updTodo);
+      const { todos } = state;
+      const { id, text, isDone } = action.todo;
+      const indexTodo = todos.findIndex((item) => item.id === id);
+      if (text) todos[indexTodo].text = text;
+      if (isDone !== undefined) todos[indexTodo].isDone = isDone;
+
+      // todo: do not mutate state, refactor it
+      // [...myArray.slice(0, objIndex), Object.assign({}, myArray[objIndex], ...myArray.slice(objIndex + 1))]
+
       return {
         ...state,
-        todos: updatedTodos,
+        todos,
       };
     }
     default:
@@ -56,6 +57,9 @@ const useValue = (): ContextType => {
     },
     delTodo: (id: string) => {
       dispatch({ type: DEL_TODO, todo: { id } });
+    },
+    toggleTodo: (id: string, isDone: boolean) => {
+      dispatch({ type: UPD_TODO, todo: { id, isDone } });
     },
   };
   return { state, actions };
